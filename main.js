@@ -137,7 +137,7 @@ function renderGame() {
   imagesContainer.innerHTML = '';
   imagesRandom.forEach((image) => {
     const img = document.createElement('img');
-    img.src = `./images/${image}.png`;
+    img.src = `./Images/${image}.png`;
     img.alt = image;
     img.title = image;
     imagesContainer.appendChild(img);
