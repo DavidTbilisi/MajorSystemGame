@@ -1,0 +1,63 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+
+:root {
+    --primary-color: #2e212b;
+    --secondary-color: #ffffff;
+    --accent-color: #ff4081;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+img {
+    max-width: 100%;
+    border-radius: 4px;
+}
+
+img:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+.number{
+    font-size: 44px;
+    font-weight: bold;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.images {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 5px;
+}
+
+/* mobile breakpoint */
+
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+
+    .number {
+        font-size: 36px;
+    }
+
+    .images {
+        grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
+    }
+}
