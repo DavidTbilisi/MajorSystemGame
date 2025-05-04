@@ -89,8 +89,11 @@ function updateStatsDisplay() {
 
   function renderList(obj, labelClass) {
     if (Object.keys(obj).length === 0) return '<span>None</span>';
+    // Sort by frequency descending, then by number ascending
+    const sorted = Object.entries(obj)
+      .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
     return `<ul style="list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px;">` +
-      Object.entries(obj)
+      sorted
         .map(([num, count]) =>
           `<li style="margin:0;">
             <span style="display:inline-block;min-width:2.5em;text-align:center;font-weight:bold;">${num}</span>
