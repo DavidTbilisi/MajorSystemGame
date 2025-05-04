@@ -86,16 +86,34 @@ function updateStatsDisplay() {
       wrong[entry.number] = (wrong[entry.number] || 0) + 1;
     }
   });
-  let correctEntries = Object.entries(correct)
-    .map(([num, count]) => `${num}: ${count}`)
-    .join(', ');
-  let wrongEntries = Object.entries(wrong)
-    .map(([num, count]) => `${num}: ${count}`)
-    .join(', ');
+
+  function renderList(obj, labelClass) {
+    if (Object.keys(obj).length === 0) return '<span>None</span>';
+    return `<ul style="list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px;">` +
+      Object.entries(obj)
+        .map(([num, count]) =>
+          `<li style="margin:0;">
+            <span style="display:inline-block;min-width:2.5em;text-align:center;font-weight:bold;">${num}</span>
+            <span style="background:${labelClass==='correct'?'#4caf50':'#f44336'};color:#fff;border-radius:12px;padding:2px 8px;margin-left:4px;font-size:0.95em;">
+              ${count}
+            </span>
+          </li>`
+        ).join('') +
+      `</ul>`;
+  }
+
   statsElement.innerHTML = `
-    <div><strong>Correct:</strong> ${correctEntries || 'None'}</div>
-    <div><strong>Wrong:</strong> ${wrongEntries || 'None'}</div>
-    <div><strong>Total Attempts:</strong> ${stats.length}</div>
+    <div style="display:flex;gap:32px;align-items:flex-start;">
+      <div>
+        <strong>Correct:</strong>
+        ${renderList(correct, 'correct')}
+      </div>
+      <div>
+        <strong>Wrong:</strong>
+        ${renderList(wrong, 'wrong')}
+      </div>
+    </div>
+    <div style="margin-top:8px;"><strong>Total Attempts:</strong> ${stats.length}</div>
   `;
 }
 
